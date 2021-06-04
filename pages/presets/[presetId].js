@@ -1,7 +1,14 @@
+import cookies from 'js-cookie';
 import Head from 'next/head';
+import { useState } from 'react';
 import Layout from '../../components/Layout';
+import {
+  getAddedPresetCookieValue,
+  toggleBuyPresetByPresetId,
+} from '../../util/cookies';
 
 export default function SinglePreset(props) {
+  const [addedPreset, setAddedPreset] = useState(getAddedPresetCookieValue());
   return (
     <Layout>
       <Head>
@@ -10,7 +17,14 @@ export default function SinglePreset(props) {
 
       <h1>{props.preset.filterName}</h1>
       <div>filter id: {props.preset.id}</div>
-      <button>Add to cart</button>
+      <button
+        onClick={() => {
+          // cookies.set('addedPreset', [props.preset]);
+          setAddedPreset(toggleBuyPresetByPresetId(props.preset));
+        }}
+      >
+        {addedPreset.includes(props.preset.id) ? 'Unfollow' : 'Follow'}
+      </button>
     </Layout>
   );
 }
