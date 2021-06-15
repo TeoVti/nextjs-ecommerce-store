@@ -5,17 +5,32 @@ export function getAddedPresetCookieValue() {
   return Array.isArray(cookieValue) ? cookieValue : [];
 }
 
-export function toggleBuyPresetByPresetId(presetId) {
-  const previousCookieValue = getAddedPresetCookieValue();
+export function addPresetToCookieById(presetId) {
+  const newCookieValue = [...getAddedPresetCookieValue()];
 
-  let newCookieValue;
+  const presetQuantity = newCookieValue.find((pid) => pid.id === presetId);
 
-  if (previousCookieValue.includes(presetId)) {
-    newCookieValue = previousCookieValue.filter((pid) => pid.id !== presetId);
+  if (presetQuantity) {
+    presetQuantity.quantity = presetQuantity.quantity + 1;
   } else {
-    newCookieValue = [...previousCookieValue, presetId];
+    newCookieValue.push({
+      id: presetId,
+      quantity: 1,
+    });
   }
+  cookies.set('addedPreset', newCookieValue);
+}
 
+export function removePresetToCookieById(presetId) {
+  const newCookieValue = [...getAddedPresetCookieValue()];
+  const presetIdInCookie = newCookieValue.find((p) => p.id === presetId);
+  const removeId = newCookieValue.findIndex((p) => p.id === presetId);
+
+  if (presetIdInCookie) {
+    newCookieValue.splice(removeId, 1);
+  } else {
+    return newCookieValue;
+  }
   cookies.set('addedPreset', newCookieValue);
   return newCookieValue;
 }
