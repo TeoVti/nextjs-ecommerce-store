@@ -5,20 +5,23 @@ export function getAddedPresetCookieValue() {
   return Array.isArray(cookieValue) ? cookieValue : [];
 }
 
-export function addPresetToCookieById(presetId) {
+export function addPresetToCookieById(presetId, quantity) {
+  const addedQuantity = quantity ? quantity : 1;
   const newCookieValue = [...getAddedPresetCookieValue()];
 
   const presetQuantity = newCookieValue.find((pid) => pid.id === presetId);
 
   if (presetQuantity) {
-    presetQuantity.quantity = presetQuantity.quantity + 1;
+    presetQuantity.quantity =
+      Number(presetQuantity.quantity) + Number(addedQuantity);
   } else {
     newCookieValue.push({
       id: presetId,
-      quantity: 1,
+      quantity: Number(addedQuantity),
     });
   }
   cookies.set('addedPreset', newCookieValue);
+  return newCookieValue
 }
 
 export function removePresetToCookieById(presetId) {

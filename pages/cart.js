@@ -2,13 +2,17 @@ import Head from 'next/head';
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import { removePresetToCookieById } from '../util/cookies';
+import { sumOfPresetsQuantity } from '../util/sumOfPresetsQuantity';
 
 export default function Cart(props) {
   const [products, setProducts] = useState(props.products);
-  console.log(products);
+  const [finalQuantity, setFinalQuantity] = useState(
+    sumOfPresetsQuantity(props.testCookie),
+  );
+  const [testCookie, SetTestCookie] = useState(props.testCookie);
 
   return (
-    <Layout cartNr={products.length}>
+    <Layout cartNr={finalQuantity}>
       <Head>
         <title>Shopping Cart</title>
       </Head>
@@ -21,8 +25,12 @@ export default function Cart(props) {
                 <a>{product.filterName}</a>
                 <button
                   onClick={() => {
-                    removePresetToCookieById(product.id),
-                      setProducts(products.filter((prd) => prd !== product));
+                    const newCookies = removePresetToCookieById(product.id);
+                    // Removes a preset from the array of presets
+                    const newValue = products.filter((prd) => prd !== product);
+                    setProducts(newValue);
+                    setFinalQuantity(sumOfPresetsQuantity(newCookies));
+                    SetTestCookie(newCookies);
                   }}
                 >
                   Remove item
@@ -30,6 +38,7 @@ export default function Cart(props) {
               </li>
             ))}
           </ul>
+          <div>Total: {(finalQuantity * 7.9).toFixed(2)} $</div>
         </div>
       </div>
     </Layout>
@@ -42,13 +51,12 @@ export async function getServerSideProps(context) {
   const testCookie = context.req.cookies.addedPreset
     ? JSON.parse(context.req.cookies.addedPreset)
     : [];
-  console.log(testCookie);
   const products = testCookie.map((item) =>
     presets.find((preset) => preset.id === item.id),
   );
-  console.log(products);
   return {
     props: {
+      testCookie: testCookie,
       products: products || [],
     },
   };

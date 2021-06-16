@@ -1013,20 +1013,23 @@ a {
   background-size: cover;
 }
 .preset-page {
-  padding-top: 70px;
+  padding-top: 10em;
   height: 100vh;
   color: white;
   background-image: url('../public/bla2.jpg');
   background-size: cover;
+  display: flex;
 }
 .container {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 2em;
+  margin-left: 10em;
 }
 .container > div {
   flex-basis: 50%; /* or - flex: 0 50% - or - flex-basis: 50% - */
   /*demo*/
-  margin-bottom: 10px;
+  margin-bottom: 2em;
 }
 .hero-text {
   margin: 5em 18em 0 1em;
@@ -1035,13 +1038,16 @@ a {
 }
 .see-presets-button {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 350px;
 }
 .hero-button {
   margin-top: 4em;
   font-size: 1.5em;
   background-color: transparent;
   color: #ffffff;
-  margin-left: 10em;
+  margin-left: 9em;
 }
 .presets-btn {
   background-color: #e81a2b;
@@ -1073,4 +1079,23 @@ a {
 .active {
   border-bottom: solid #fa2032;
   padding-bottom: 4px;
+}
+.presets-see-preset {
+  display: flex;
+}
+
+.presets-btnn {
+  margin: auto;
+  color: white;
+  height: 2em;
+  background-color: #e81a2b;
+  border: solid #fa2032;
+  border-radius: 7px;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  align-items: center;
 }

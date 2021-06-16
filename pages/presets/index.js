@@ -1,10 +1,15 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
+import { sumOfPresetsQuantity } from '../../util/sumOfPresetsQuantity';
 
 export default function Products(props) {
   return (
-    <Layout cartNr={props.testCookie.length}>
+    <Layout
+      cartNr={props.testCookie
+        .map((i) => i.quantity)
+        .reduce((a, b) => a + b, 0)}
+    >
       <Head>
         <title>Presets</title>
       </Head>
@@ -21,8 +26,12 @@ export default function Products(props) {
                         style={{ width: '350px' }}
                       ></img>
                       <div className="see-presets-button">
-                        <p>{preset.filterName}</p>
-                        <button>See Preset</button>
+                        <div>
+                          <p>{preset.filterName}</p>
+                        </div>
+                        <div className="presets-see-preset">
+                          <button className="presets-btnn">See Preset</button>
+                        </div>
                       </div>
                     </div>
                   </Link>

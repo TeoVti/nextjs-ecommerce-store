@@ -1,14 +1,16 @@
-import { css } from '@emotion/react';
 import Cookies from 'js-cookie';
 import Head from 'next/head';
 import { useState } from 'react';
 import ReactCompareImage from 'react-compare-image';
 import Layout from '../../components/Layout';
 import { addPresetToCookieById } from '../../util/cookies';
+import { sumOfPresetsQuantity } from '../../util/sumOfPresetsQuantity';
 
 export default function SinglePreset(props) {
-  const [addedPreset, setAddedPreset] = useState(props.addedPreset);
-  const [cartNr, setCartNr] = useState(props.testCookie.length);
+  const [cartNr, setCartNr] = useState(
+    sumOfPresetsQuantity(JSON.parse(props.addedPreset)),
+  );
+  const [quantity, setQuantity] = useState(1);
 
   const before = props.preset.imageBefore;
   const after = props.preset.imageAfter;
@@ -19,38 +21,35 @@ export default function SinglePreset(props) {
         <title>{props.preset.filterName}</title>
       </Head>
       <div className="preset-page">
-        <h1>{props.preset.filterName}</h1>
-        <div>filter id: {props.preset.id}</div>
-        <div style={{ maxWidth: '640px' }}>
+        <div className="left" style={{ maxWidth: '640px', marginLeft: '7em' }}>
           <ReactCompareImage leftImage={before} rightImage={after} />
         </div>
-        <form
-          className="form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            setAddedPreset(addPresetToCookieById(props.preset.id));
-            setCartNr(Cookies.getJSON('addedPreset').length);
-          }}
-        >
-          <input
-            className="input"
-            placeholder="Add an amount"
-            type="number"
-            min="1"
-          />
-          <button type="submit" className="search">
-            Add to Cart
-          </button>
-        </form>
-        {/* <button
-        onClick={() => {
-          // cookies.set('addedPreset', [props.preset]);
-          setAddedPreset(toggleBuyPresetByPresetId(props.preset.id));
-          setCartNr(Cookies.getJSON('addedPreset').length);
-        }}
-      >
-        {addedPreset.includes(props.preset.id) ? 'Remove' : 'Add'}
-      </button> */}
+        <div className="left">
+          <h1>{props.preset.filterName}</h1>
+          <div>Price: {props.preset.price}$</div>
+
+          <form
+            className="form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const newValue = addPresetToCookieById(props.preset.id, quantity);
+              setCartNr(sumOfPresetsQuantity(newValue));
+            }}
+          >
+            <input
+              onChange={(event) => setQuantity(event.target.value)}
+              value={quantity}
+              className="input"
+              placeholder="Amount"
+              type="number"
+              min="1"
+              style={{ width: '6em', borderRadius: '3px' }}
+            />
+            <button type="submit" className="presets-btnn">
+              Add to Cart
+            </button>
+          </form>
+        </div>
       </div>
     </Layout>
   );
@@ -63,11 +62,8 @@ export async function getServerSideProps(context) {
   const testCookie = context.req.cookies.addedPreset
     ? JSON.parse(context.req.cookies.addedPreset)
     : [];
-
   const preset = presets.find((p) => p.id === presetId);
-
   // console.log(context.req.cookies.addedPreset);
-
   return {
     props: {
       preset: preset,

@@ -15,7 +15,11 @@ const heroStyles = css`
 
 export default function Home(props) {
   return (
-    <Layout cartNr={props.testCookie.length}>
+    <Layout
+      cartNr={props.testCookie
+        .map((i) => i.quantity)
+        .reduce((a, b) => a + b, 0)}
+    >
       <Head>
         <title>Home</title>
       </Head>
