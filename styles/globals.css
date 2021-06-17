@@ -989,10 +989,15 @@ a {
 .nav {
   float: right;
   margin-right: 30px;
+  display: flex;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  justify-content: space-evenly;
+  align-items: baseline;
 }
 .cart {
   width: 30px;
-  margin-bottom: -7px;
 }
 .logo {
   width: 35px;
@@ -1007,10 +1012,10 @@ a {
 }
 .cart-page {
   padding-top: 70px;
-  height: 100vh;
   color: white;
   background-image: url('../public/bla2.jpg');
   background-size: cover;
+  min-height: 100vh;
 }
 .preset-page {
   padding-top: 10em;
@@ -1032,7 +1037,7 @@ a {
   margin-bottom: 2em;
 }
 .hero-text {
-  margin: 5em 18em 0 1em;
+  margin: 4.5em 17em 0 2em;
   font-size: 3em;
   color: white;
 }
@@ -1047,13 +1052,14 @@ a {
   font-size: 1.5em;
   background-color: transparent;
   color: #ffffff;
-  margin-left: 9em;
+  margin-left: 11em;
 }
 .presets-btn {
   background-color: #e81a2b;
   border: solid #fa2032;
   padding: 15px;
   border-radius: 7px;
+  color: white;
 }
 
 .badge {
@@ -1091,6 +1097,7 @@ a {
   background-color: #e81a2b;
   border: solid #fa2032;
   border-radius: 7px;
+  cursor: pointer;
 }
 .left {
   display: flex;
@@ -1098,4 +1105,53 @@ a {
   flex-basis: 100%;
   flex: 1;
   align-items: center;
+}
+.form {
+  margin-top: 20px;
+}
+.cart-info {
+  display: inline-grid;
+  position: absolute;
+  height: fit-content;
+  margin-left: 1em;
+}
+.rmv-button {
+  padding-left: 0;
+  color: #fa2032;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  margin-bottom: -0.6em;
+  text-align: inherit;
+}
+.right-side {
+  padding: 1em 0 1em 0;
+  background-color: #150808;
+  border: solid 1px white;
+  height: 31em;
+  width: 25em;
+  margin-right: 15em;
+}
+.items-nr {
+  display: flex;
+  font-size: 2em;
+  justify-content: space-between;
+  margin: 0.5em;
+}
+.code-input {
+  width: -webkit-fill-available;
+  font-size: 2em;
+  background-color: #ffffff24;
+  border: none;
+}
+.apply-btn {
+  background-color: #e81a2b;
+  border: solid #fa2032;
+  padding: 10px;
+  border-radius: 7px;
+  color: white;
+}
+a {
+  text-decoration: none !important;
+  color: white !important;
 }

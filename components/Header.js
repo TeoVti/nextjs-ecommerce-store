@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 const headerStyles = css`
   color: white;
-  padding: 10px 15px;
+  padding: 15px 15px;
   background-color: transparent;
   position: fixed;
   width: 100%;

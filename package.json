@@ -11,9 +11,11 @@
     "@emotion/babel-plugin": "^11.3.0",
     "@emotion/react": "^11.4.0",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "bootstrap": "^5.0.1",
     "js-cookie": "^2.2.1",
     "next": "10.2.3",
     "react": "17.0.2",
+    "react-bootstrap": "^1.6.1",
     "react-compare-image": "^3.1.0",
     "react-dom": "17.0.2"
   }

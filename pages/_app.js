@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { css, Global } from '@emotion/react';
 import Head from 'next/head';
 

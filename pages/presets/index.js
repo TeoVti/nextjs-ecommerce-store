@@ -23,11 +23,13 @@ export default function Products(props) {
                     <div>
                       <img
                         src={preset.imageAfter}
-                        style={{ width: '350px' }}
+                        style={{ width: '350px', cursor: 'pointer' }}
                       ></img>
                       <div className="see-presets-button">
                         <div>
-                          <p>{preset.filterName}</p>
+                          <p style={{ fontSize: '30px', margin: '0' }}>
+                            {preset.filterName}
+                          </p>
                         </div>
                         <div className="presets-see-preset">
                           <button className="presets-btnn">See Preset</button>
