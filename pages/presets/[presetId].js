@@ -7,9 +7,7 @@ import { addPresetToCookieById } from '../../util/cookies';
 import { sumOfPresetsQuantity } from '../../util/sumOfPresetsQuantity';
 
 export default function SinglePreset(props) {
-  const [cartNr, setCartNr] = useState(
-    sumOfPresetsQuantity(JSON.parse(props.addedPreset)),
-  );
+  const [cartNr, setCartNr] = useState([]);
   const [quantity, setQuantity] = useState(1);
 
   const before = props.preset.imageBefore;
@@ -67,7 +65,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       preset: preset,
-      addedPreset: context.req.cookies.addedPreset || [],
+      addedPreset: context.req.cookies.addedPreset || null,
       testCookie: testCookie,
     },
   };

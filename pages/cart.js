@@ -25,8 +25,10 @@ export default function Cart(props) {
       </Head>
 
       <div className="cart-page">
-        <h1 style={{ textAlign: 'center' }}>Shopping Cart</h1>
-        <div className="cart-sub-page" style={{ display: 'flex' }}>
+        <div
+          className="cart-sub-page"
+          style={{ display: 'flex', marginTop: '3em' }}
+        >
           <div style={{ flex: '1' }}>
             <ul>
               {products.map((product) => (

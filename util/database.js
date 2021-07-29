@@ -9,7 +9,7 @@ export const presets = [
 
   {
     id: '2',
-    filterName: 'Dreamy',
+    filterName: 'Retro Summer',
     price: 7.9,
     imageBefore: '/dreamybefore.jpg',
     imageAfter: '/dreamyafter.jpg',

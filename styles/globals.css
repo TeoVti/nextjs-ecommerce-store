@@ -1,9 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Adamina&family=DM+Serif+Text&display=swap');
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -1040,6 +1040,8 @@ a {
   margin: 4.5em 17em 0 2em;
   font-size: 3em;
   color: white;
+  font-family: 'Adamina', serif;
+  font-family: 'DM Serif Text', serif;
 }
 .see-presets-button {
   display: flex;
@@ -1048,7 +1050,7 @@ a {
   width: 350px;
 }
 .hero-button {
-  margin-top: 4em;
+  margin-top: 2em;
   font-size: 1.5em;
   background-color: transparent;
   color: #ffffff;

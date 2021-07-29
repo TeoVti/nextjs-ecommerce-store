@@ -24,6 +24,7 @@ const customerInfoDataContainer = css`
   border: solid 2px gray;
   border-radius: 8px;
   padding-bottom: 20px;
+  background-color: #150808;
 `;
 
 const rightContainer = css`
@@ -54,6 +55,7 @@ const totalSumContainer = css`
   border-radius: 8px;
   padding-right: 20px;
   padding-left: 20px;
+  background-color: #150808;
   h1 {
     display: flex;
     font-size: 28px;
